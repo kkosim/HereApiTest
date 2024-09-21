@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+  <title>Map with Driving Route from A to B</title>
+  <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <link rel="stylesheet" type="text/css" href="../template.css" />
+  <script type="text/javascript" src='../test-credentials.js'></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+  <style type="text/css">
+    .directions li span.arrow {
+      display: inline-block;
+      min-width: 28px;
+      min-height: 28px;
+      background-position: 0px;
+      background-image: url("https://heremaps.github.io/maps-api-for-javascript-examples/map-with-route-from-a-to-b/img/arrows.png");
+      position: relative;
+      top: 8px;
+    }
+
+    .directions li span.depart {
+      background-position: -28px;
+    }
+
+    .directions li span.rightturn {
+      background-position: -224px;
+    }
+
+    .directions li span.leftturn {
+      background-position: -252px;
+    }
+
+    .directions li span.arrive {
+      background-position: -1288px;
+    }
+
+
+    #map {
+      width: 50vw;
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body id="markers-on-the-map">
+  <div class="page-header">
+    <h1>ИС учета и оптимизации транспортных расходов на предприятии</h1>
+    <p>Выберите точки отправки и назначения</p>
+  </div>
+
+  <!-- Wrapper for sidebar and main content -->
+  <div class="layout-container">
+    <div class="sidebar">
+      <h2>Маршрут</h2>
+      <form>
+        <label for="start">Точка отправки:</label>
+        <input type="text" id="start" name="start" placeholder="Координаты начала">
+
+        <label for="destination">Точка назначения:</label>
+        <input type="text" id="destination" name="destination" placeholder="Координаты пункта назначения">
+
+          <label>Транспорт:</label><br>
+          <select id="mySelect">
+            <option value="car">Легковая машина</option>
+            <option value="truck">Грузовик</option>
+            <option value="bus">Автобус</option>
+            <option value="privateBus">Частный автобус</option>
+            <option value="taxi">Такси</option>
+          </select>
+          <br>
+          <br>
+
+        <button type="button" onclick="mainMF()">Вычислить маршрут</button>
+        <br>
+        <button type="button" onclick="fetchReport()">Вывести весь отчет</button>
+
+      </form>
+    </div>
+
+    <div class="main-container">
+      <div class="content">
+        <p>Эта Информационная система вычисляет траекторию маршрута транспорта, расстояние от точки начала до пункта назначения, 
+          и потребляемое топливо
+        </p>
+        <div id="map"></div>
+        <div id="panel"></div>
+      </div>
+    </div>
+    <div class="right-sidebar">
+      <h2>Отчет</h2>
+      <div id="report-content">
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <h3>Here Map API</h3>
+  </footer>
+  <script type="text/javascript" src='demo.js'></script>
+</body>
+
+</html>
